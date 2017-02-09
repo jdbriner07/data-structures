@@ -50,4 +50,5 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ O(n) there is one while loop that adds n complexitiy, all other aspects are O(1).
  */
