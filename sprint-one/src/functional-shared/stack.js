@@ -4,6 +4,8 @@ var Stack = function() {
   return newStack;
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
+  _.extend(newStack, stackMethods);
+  return newStack;
 };
 
 var stackMethods = {
