@@ -39,5 +39,5 @@ treeMethods.contains = function(target) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
-
+O(n) because the contains method only looks at each child / node once.
  */
