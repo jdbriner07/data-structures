@@ -25,14 +25,17 @@ Graph.prototype.contains = function(node) {
 Graph.prototype.removeNode = function(node) {
   for (var x in this[node]) {
     if (x !== 'value') {
-      this[x][node] = undefined;
+      delete this[x][node];
     }
   }
-  this[node] = undefined;
+  delete this[node];
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
+  if (this[fromNode] === undefined || this[toNode] === undefined) {
+    return false;
+  }
   return this[fromNode][toNode] !== undefined;
 };
 
@@ -45,8 +48,8 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
-  this[fromNode][toNode] = undefined;
-  this[toNode][fromNode] = undefined;
+  delete this[fromNode][toNode];
+  delete this[toNode][fromNode];
 };
 
 // Pass in a callback which will be executed on each node of the graph.
@@ -54,12 +57,16 @@ Graph.prototype.forEachNode = function(cb) {
   debugger;
   for (var key in this) {
     //and an if statment to check for integer
-    cb(this[key].value);
+    if (key > 0) {
+      cb(this[key].value);
+    }
   }
 };
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ forEachNode is linear O(n)
+ others are all constant O(1)
  */
 
 

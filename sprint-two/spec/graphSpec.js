@@ -68,4 +68,23 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('should execute a callback on each node in the graph if you have removed a node', function() {
+    var connectToFive = function(item) {
+      graph.addEdge(item, 5);
+    };
+    graph.addNode(5);
+    graph.addNode(2);
+    graph.addNode(1);
+    graph.addNode(3);
+    graph.removeNode(2);
+    graph.forEachNode(connectToFive);
+    graph.removeEdge(5, 3);
+    expect(graph.hasEdge(2, 5)).to.equal(false);
+    expect(graph.hasEdge(1, 5)).to.equal(true);
+    expect(graph.hasEdge(3, 5)).to.equal(false);
+    expect(graph.hasEdge(5, 5)).to.equal(true);
+  });
+
+
 });
