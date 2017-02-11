@@ -3,6 +3,7 @@
 var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
+  this._count = 0;
   //limitedArray.each to make an empty bucket array at each index 
   //this._storage.each(function() { ; } );
   // this._storage.each(function( i) {
@@ -29,6 +30,11 @@ HashTable.prototype.insert = function(k, v) {
   }
   if (!keyFound) {
     this._storage[index].push([k, v]);
+    this._count++;
+  }
+  if (this._count >= this._limit * 0.75) {
+    debugger;
+    this.resize();
   }
 };
 
@@ -52,10 +58,34 @@ HashTable.prototype.remove = function(k) {
     if (this._storage[index][i][0] === k) {
       //delete it's associated value
       this._storage[index].splice(i, 1);
+      this._count--;
     }
+  }
+  if (this._count < this._limit * 0.25) {
+    
+    this.resize();
+
   }
 };
 
+HashTable.prototype.resize = function() {
+  var temp = JSON.parse(JSON.stringify(this));
+  if (this._count >= this._limit * 0.75) {
+    this._limit = this._limit * 2;
+  } else {
+    this._limit = this._limit / 2; 
+  }
+  this._storage = LimitedArray(this._limit);
+  this._count = 0;
+  for (var i = 0; i < this._limit; i++) {
+    this._storage[i] = [];
+  }
+  for (var i = 0; i < temp._limit; i++) {
+    for (var j = 0; j < temp._storage[i].length; j++) {
+      this.insert(temp._storage[i][j][0], temp._storage[i][j][1]);
+    }
+  }
+};
 
 
 /*
