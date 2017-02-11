@@ -31,7 +31,7 @@ BinarySearchTree.methods.insert = function(number) {
       this.right.insert(number);
     }
   }
-  
+
   
 
 };
@@ -77,7 +77,7 @@ BinarySearchTree.methods.depthFirstLog = function(cb) {
 };
 
 
-BinarySearchTree.methods.rebalance = function(treeArray)
+BinarySearchTree.methods.rebalance = function(treeArray) {};
 
 /*
  * Complexity: What is the time complexity of the above functions?
