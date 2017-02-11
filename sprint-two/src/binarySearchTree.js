@@ -18,6 +18,7 @@ BinarySearchTree.methods.insert = function(number) {
     //otherwise recurse on left side 
     } else {
       this.left.insert(number);
+
     }
   }
   //if greater than goes right path
@@ -30,6 +31,7 @@ BinarySearchTree.methods.insert = function(number) {
       this.right.insert(number);
     }
   }
+  
   
 
 };
@@ -73,6 +75,9 @@ BinarySearchTree.methods.depthFirstLog = function(cb) {
   }
 
 };
+
+
+BinarySearchTree.methods.rebalance = function(treeArray)
 
 /*
  * Complexity: What is the time complexity of the above functions?
