@@ -17,7 +17,6 @@ HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   //make boolean
   var keyFound = false;
-  debugger;
   // push kv pair into bucket at the found index
   for (var i = 0; i < this._storage[index].length; i++) {   
     //if we find our key 
