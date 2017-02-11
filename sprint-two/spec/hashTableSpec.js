@@ -23,6 +23,17 @@ describe('hashTable', function() {
     expect(hashTable.retrieve('Steven')).not.to.equal('Seagal');
   });
 
+  it('should not error with retrieve of values that were never added', function() {
+    hashTable.insert('Steven', 'Spielberg');
+    expect(hashTable.retrieve('Bill')).to.equal(undefined);
+  });
+
+  it('should not error with remove values that were never added', function() {
+    hashTable.remove('Steven', 'Spielberg');
+    expect(hashTable.retrieve('Bill')).to.equal(undefined);
+    expect(hashTable.retrieve('Steven')).to.equal(undefined);
+  });
+
   it('should overwrite values that have the same key', function() {
     hashTable.insert('Bob', 'Loblaw');
     hashTable.insert('Bob', 'Barker');

@@ -18,10 +18,22 @@ describe('set', function() {
     expect(set.contains('Susan Sarandon')).to.equal(true);
   });
 
+  it('should return false if value not in set', function() {
+    expect(set.contains('Mel Gibson')).to.equal(false);
+  });
+
+
+  it('should not error when trying to remove a value that is not there', function() {
+    set.remove('Mel Gibson');
+    expect(set.contains('Mel Gibson')).to.equal(false);
+  });
+
   it('should remove values from a set', function() {
     set.add('Mel Gibson');
     set.remove('Mel Gibson');
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
+
+
 
 });

@@ -5,8 +5,10 @@ var HashTable = function() {
   this._storage = LimitedArray(this._limit);
   //limitedArray.each to make an empty bucket array at each index 
   //this._storage.each(function() { ; } );
-  // this._storage.each(function(x, i) {
+  // this._storage.each(function( i) {
+  //   console.log(1);
   //   this._storage[i] = [];
+
   // });
   for (var i = 0; i < this._limit; i++) {
     this._storage[i] = [];

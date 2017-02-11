@@ -11,6 +11,10 @@ describe('binarySearchTree', function() {
     expect(binarySearchTree.depthFirstLog).to.be.a('function');
   });
 
+  it('should "contains" the value at the highest tree', function() {
+    expect(binarySearchTree.contains(5)).to.equal(true);
+  });
+
   it('should insert values at the correct location in the tree', function() {
     binarySearchTree.insert(2);
     binarySearchTree.insert(3);
@@ -27,6 +31,19 @@ describe('binarySearchTree', function() {
     expect(binarySearchTree.contains(7)).to.equal(true);
     expect(binarySearchTree.contains(8)).to.equal(false);
   });
+
+  it('should handle negative numbers', function() {
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(-7);
+    expect(binarySearchTree.contains(-7)).to.equal(true);
+  });
+
+  // it('should rebalance when a branch exceeds the minimum depth', function() {
+  //   binarySearchTree.insert(2);
+  //   binarySearchTree.insert(3);
+  //   expect(binarySearchTree.value).to.equal(3);
+  // });
 
   it('should execute a callback on every value in a tree using "depthFirstLog"', function() {
     var array = [];
